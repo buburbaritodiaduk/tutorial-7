@@ -15,6 +15,16 @@ Abis dioptimalin
 ![Screenshot 2026-04-28 at 11.24.17.png](assets/Screenshot%202026-04-28%20at%2011.24.17.png)
 ![img.png](assets/img.png)
 
+---
+## Kesimpulan Perbandingan JMeter (Sebelum vs Sesudah Optimasi)
+
+**Ya, terdapat peningkatan performa yang sangat signifikan!** Berdasarkan hasil pengujian ulang menggunakan JMeter, terlihat perbaikan performa yang drastis pada aplikasi, khususnya pada *endpoint* `/all-student`.
+
+- **Sebelum Optimasi (Pengukuran Pertama):** Waktu respon rata-rata (Average) berada di angka **~356 ms** dengan waktu respon maksimal mencapai **1206 ms**. Hal ini terjadi karena aplikasi mengeksekusi lebih dari 500 *query* ke *database* akibat masalah *N+1 Query Problem*.
+- **Sesudah Optimasi (Pengukuran Kedua):** Waktu respon menurun drastis dan jauh lebih stabil (rata-rata menjadi **~251 ms**). Selain itu, berdasarkan pemantauan di IntelliJ Profiler, beban CPU untuk waktu eksekusi *method* `getAllStudentsWithCourses()` anjlok tajam dari **2.290 ms** menjadi hanya **720 ms**.
+
+**Kesimpulan Akhir:** Implementasi `JOIN FETCH` untuk menarik semua relasi data sekaligus dalam 1 *query*, serta penggunaan *Java Stream API* untuk komputasi data, terbukti sangat efektif dalam mengatasi *bottleneck*. Aplikasi kini tidak lagi terbebani oleh *query* tersembunyi (*Hidden N+1*) dan proses penggabungan *String* yang memakan banyak memori. Secara keseluruhan, optimasi ini berhasil meningkatkan *throughput* dan mempercepat *response time* aplikasi.
+
 Reflection
 1. Perbedaan pendekatan JMeter (Performance Testing) dan IntelliJ Profiler
    JMeter (Performance Testing): Pendekatannya bersifat Black-box (dari luar). JMeter bertugas sebagai klien yang mensimulasikan beban (load) dengan mengirimkan banyak request ke aplikasi. Fokus utamanya adalah mengukur metrik eksternal seperti waktu respon (Latency/Average Time), Throughput (jumlah request per detik), dan tingkat error saat aplikasi berada di bawah tekanan.
