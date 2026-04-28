@@ -23,10 +23,6 @@ public class StudentService {
     @Autowired
     private StudentCourseRepository studentCourseRepository;
 
-    public List<StudentCourse> getAllStudentsWithCourses() {
-        return studentCourseRepository.findAll();
-    }
-
     public Optional<Student> findStudentWithHighestGpa() {
         List<Student> students = studentRepository.findAll();
         return students.stream()
@@ -38,6 +34,10 @@ public class StudentService {
         return students.stream()
                 .map(Student::getName)
                 .collect(java.util.stream.Collectors.joining(", "));
+    }
+
+    public List<StudentCourse> getAllStudentsWithCourses() {
+        return studentCourseRepository.findAllWithRelations();
     }
 }
 
