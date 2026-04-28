@@ -11,3 +11,6 @@ Test plans from CMD
 ![Screenshot 2026-04-28 at 11.03.34.png](assets/Screenshot%202026-04-28%20at%2011.03.34.png)
 ![Screenshot 2026-04-28 at 11.04.05.png](assets/Screenshot%202026-04-28%20at%2011.04.05.png)
 
+Abis dioptimalin
+![Screenshot 2026-04-28 at 11.24.17.png](assets/Screenshot%202026-04-28%20at%2011.24.17.png)
+Pingnya turun dengan Avg: 251 | Max: 988
